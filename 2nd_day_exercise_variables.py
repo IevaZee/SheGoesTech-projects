@@ -32,6 +32,24 @@ print(c, type(c))
 c = int(c)
 print(c, type(c))
 
+e = 2.71828
+e_rounded = round(e)
+print(e_rounded, type(e_rounded))
+e_rounded_to_2 = round(e, 2)
+print(e_rounded_to_2, type(e_rounded_to_2))
+
+my_str = "888.67"
+my_float = float(my_str)
+my_int = int(my_float)
+print(my_str, my_float, my_int)
+
+import datetime
+print("Today is", datetime.datetime.now())
+print("The year is", datetime.datetime.now().year)
+
+my_name_exercise = input("What is your name? ")
+print(f"That is a nice name {my_name_exercise}")
+
 # Write a program that asks for and saves a username
 # Ask a question about the user's age, using the username in the question.
 # Shows in how many years the user will be 100 years old smile
