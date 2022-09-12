@@ -10,10 +10,10 @@
 
 # remember about type conversion if needed
 
-t = float(input("What is your temperature? "))
-if t < 35:
-    print("not too cold")
-elif 35 <= t <= 37:
-    print("all right")
+temp = float(input("What is your temperature? "))
+if temp < 35:
+    print("not too cold", temp)
+elif temp <= 37:
+    print("all right", temp)
 else:
-    print("possible fever")
+    print("possible fever", temp)
