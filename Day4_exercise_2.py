@@ -16,3 +16,14 @@
 
 h = float(input("The height of the tree is: "))
 h = int(h)
+
+# FIXME Not the right code for this exercise
+for n in range(30):
+    if n%5 == 0 and n%7 == 0:
+        print("FizzBuzz")
+    elif n%5 == 0:
+        print("Fizz")
+    elif n%7 == 0:
+        print("Buzz")
+    else:
+        print(n)
