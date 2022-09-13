@@ -18,6 +18,8 @@ years_worked = float(input("How many years have you worked? "))
 # bonus = 0.15 * salary * years
 #FIXME
 if years_worked > years_without_bonus:
-    print(f"Your Christmas bonus will be {bonus}")
+    bonus = (years_worked - years_without_bonus) * salary * bonus_percent
+    bonus = round(bonus, 2)
+    print(f"Your Christmas bonus will be {bonus} euros")
 else:
     print("Sorry, no Christmas bonus for you yet")
