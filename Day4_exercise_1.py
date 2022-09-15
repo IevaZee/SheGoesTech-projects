@@ -10,11 +10,14 @@
 
 
 for n in range(1,101):
+    end = ", "
+    if n == 100:
+        end = ""
     if n%5 == 0 and n%7 == 0:
-        print("FizzBuzz")
+        print("FizzBuzz", end = end)
     elif n%5 == 0:
-        print("Fizz")
+        print("Fizz", end = end)
     elif n%7 == 0:
-        print("Buzz")
+        print("Buzz", end = end)
     else:
-        print(n)
+        print(f"{n}", end = end)
