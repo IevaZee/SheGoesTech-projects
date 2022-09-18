@@ -14,16 +14,9 @@
 
 # Note: remember that several symbols can be printed at once, for example: print ("" * 10 + "*" * 6)
 
-h = float(input("The height of the tree is: "))
-h = int(h)
-
-# FIXME Not the right code for this exercise
-for n in range(30):
-    if n%5 == 0 and n%7 == 0:
-        print("FizzBuzz")
-    elif n%5 == 0:
-        print("Fizz")
-    elif n%7 == 0:
-        print("Buzz")
-    else:
-        print(n)
+h = int(input("Enter the height of the tree: "))
+asterisks = 1
+while h > 0:
+    print(" " * (h-1) + "*" * asterisks)
+    h -= 1
+    asterisks += 2
