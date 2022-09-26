@@ -51,3 +51,24 @@
 
 # the trickiest case is something like this
 # get_city_year(1000, -3, 50, 2000) -> -1 is the correct answer but how to get there?
+
+
+
+def get_city_year(p0, perc, delta, target_p):
+    years = 0
+    while True:
+        p_current = int(p0 + (perc/100*p0) + delta)
+        p0 = p_current
+        years += 1
+        if p_current >= target_p:
+            break
+    return years
+
+#TODO Need to consider negative numbers. And give output -1
+
+# TESTING:
+print(get_city_year(1000,2,50,1200) == 3) # works
+# print(get_city_year(1000, 2, -50, 5000) == -1) # does not work
+print(get_city_year(1500, 5, 100, 5000) == 15) # works
+print(get_city_year(1500000, 2.5, 10000, 2000000) == 10) # works
+# print(get_city_year(1000, -3, 50, 2000) == -1) # does not work
