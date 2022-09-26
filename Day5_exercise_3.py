@@ -24,3 +24,19 @@
 # Find (or index, or even rfind) will probably come in handy, as may an operator. Also slice syntax will be useful.
 
 # Extra: How would you do this task in Latvian language (nav slikts/a -> ir labs/a)?
+
+
+
+user_input = input("Enter a text: ")
+
+bad_word_1 = "not"
+bad_word_2 = "bad"
+start_location = user_input.find(bad_word_1)
+end_location = user_input.find(bad_word_2)
+bad_word_2_len = len(bad_word_2) 
+good_word = "good"
+
+if start_location < end_location:
+    print(f"{user_input[:start_location]}{good_word}{user_input[end_location+bad_word_2_len:]}")
+else:
+    print(user_input)
