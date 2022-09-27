@@ -55,20 +55,22 @@
 
 
 def get_city_year(p0, perc, delta, target_p):
+    p_current = p0
     years = 0
-    while True:
-        p_current = int(p0 + (perc/100*p0) + delta)
-        p0 = p_current
+    if p0 >= target_p:
+        return 0
+    while p_current < target_p:
+        growth = int(p_current * perc/100 + delta)
+        if growth <= 0:
+            return -1
+        p_current += growth
         years += 1
-        if p_current >= target_p:
-            break
     return years
 
-#TODO Need to consider negative numbers. And give output -1
 
 # TESTING:
-print(get_city_year(1000,2,50,1200) == 3) # works
-# print(get_city_year(1000, 2, -50, 5000) == -1) # does not work
-print(get_city_year(1500, 5, 100, 5000) == 15) # works
-print(get_city_year(1500000, 2.5, 10000, 2000000) == 10) # works
-# print(get_city_year(1000, -3, 50, 2000) == -1) # does not work
+print(get_city_year(1000,2,50,1200) == 3)
+print(get_city_year(1000, 2, -50, 5000) == -1)
+print(get_city_year(1500, 5, 100, 5000) == 15)
+print(get_city_year(1500000, 2.5, 10000, 2000000) == 10)
+print(get_city_year(1000, -3, 50, 2000) == -1)
