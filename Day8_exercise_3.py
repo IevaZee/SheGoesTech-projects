@@ -27,3 +27,27 @@
 
 # There are two options: either walk through the copy my_dict.copy.items(), or build a new dictionary. 
 # Dictionary comprehension would be one option.
+
+
+
+# SOLUTION 3A:
+
+# def clean_dict_value(d, bad_val):
+#     return {key:value for key,value in d.items() if value != bad_val}
+
+
+# print(clean_dict_value({'a': 5, 'b': 6, 'c': 5}, 5))
+
+
+# SOLUTION 3B:
+
+def clean_dict_values(d, v_list):
+    new_dict = {}
+    for key, value in d.items():
+        if value not in v_list:
+            new_dict[key] = value
+    return new_dict
+
+
+
+print(clean_dict_values({'a': 5, 'b': 6, 'c': 5, 'd':3}, [3,4,5]))

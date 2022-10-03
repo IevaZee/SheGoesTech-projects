@@ -27,3 +27,18 @@
 
 # some languages have perfect pangrams, some do not
 # perfect pangram - a pangram that uses every letter of the alphabet at just once
+
+
+# SOLUTION:
+
+def is_pangram(text, alphabet='abcdefghijklmnopqrstuvwxyz'):
+    return set(alphabet).issubset(set(text.lower()))
+
+
+print(is_pangram("The five boxing wizards jump quickly"))
+print(is_pangram("Not a pangram"))
+
+
+a_lv='aābcčdeēfgģhiījkķlļmnņoprsštuūvzž'
+
+print(is_pangram('Tfū, čeh, džungļos blīkšķ, zvaņģim jācērp!', alphabet=a_lv))

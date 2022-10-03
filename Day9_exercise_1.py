@@ -10,13 +10,22 @@
 
 
 
+# SOLUTION:
+
+# def get_min_avg_max(sequence):
+#     return min(sequence), round(sum(sequence)/len(sequence), 2), max(sequence)
+
+
+# print(get_min_avg_max([0,10,1,9]))
+
+
+
+# OR OTHER SOLUTION USING "MEAN":
+
+from statistics import mean
+
 def get_min_avg_max(sequence):
-    if type(sequence) != list:
-        sequence = list(sequence)
-    mini = min(sequence)
-    maxi = max(sequence)
-    aver = sum(sequence)/len(sequence)
-    return mini, aver, maxi
+    return min(sequence), round(mean(sequence), 2), max(sequence)
 
 
 print(get_min_avg_max([0,10,1,9]))
