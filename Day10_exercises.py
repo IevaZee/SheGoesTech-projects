@@ -49,6 +49,7 @@
 # GARU, TĀLU CEĻU VEICU
 
 
+
 class Song:
     def __init__(self, title="", author="", lyrics=()):
         self.title = title
@@ -56,24 +57,27 @@ class Song:
         self.lyrics = lyrics
         print(f"New song made. Author {self.author}. Title {self.title}.")
 
-    def sing(self, max_lines):
-        self.max_lines = max_lines # FIXME Need to set as a default -1.
+    def sing(self, max_lines=-1):
         print(f"{self.title} - {self.author}")
-        print(self.lyrics[:max_lines]) # FIXME Output is a list, not each line in separate row.
+        if max_lines == -1:
+            max_lines = len(self.lyrics)
+        for line in self.lyrics[:max_lines]:
+            print(line)
         return self
     
-    # def yell(self):
-    #     print(f"{self.title} - {self.author}")
-    #     for line in self.lyrics:
-    #         print(line.upper())
-    #     return self
+    def yell(self, max_lines=-1):
+        print(f"{self.title} - {self.author}")
+        if max_lines == -1:
+            max_lines = len(self.lyrics)
+        for line in self.lyrics[:max_lines]:
+            print(line.upper())
+        return self
 
 
-ziemelmeita = Song("Ziemeļmeita", "Jumprava", ["Gāju meklēt ziemeļmeitu","Garu, tālu ceļu veicu", "Testing lyrics", "See how it works"])
+ziemelmeita = Song("Ziemeļmeita", "Jumprava", ["Gāju meklēt ziemeļmeitu","Garu, tālu ceļu veicu", "Lēni un par vēlu nācu", "Meklējot šo ziemļmalu"])
 
-ziemelmeita.sing(3)
+# ziemelmeita.sing(2).yell(3)
 
-# ziemelmeita.sing().yell()
 
 
 # 2. Rap class
@@ -99,3 +103,21 @@ ziemelmeita.sing(3)
 # Ziemeļmeita - Jumprava
 
 # Gāju YAH meklēt YAH ziemeļmeitu YAH
+
+
+class Rap(Song):
+    def break_it(self, max_lines=-1, drop="yeah"):
+        print(f"{self.title} - {self.author}")
+        if max_lines == -1:
+            max_lines = len(self.lyrics)
+        for line in self.lyrics[:max_lines]:
+            words = line.split()
+            new_line = f" {drop} ".join(words) + " " + drop
+            print(new_line)
+        return self
+
+
+
+zrap = Rap("Ziemeļmeita", "Jumprava", ["Gāju meklēt ziemeļmeitu","Garu, tālu ceļu veicu"])
+
+zrap.break_it(1, "yah")
