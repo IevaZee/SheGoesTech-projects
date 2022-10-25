@@ -2,6 +2,8 @@
 # read text from  sherlock_holmes_adventures.txt
 
 import os
+os.chdir("C:\\Users\\ievaz\\OneDrive\\Documents\\SheGoesTech-projects\\Day12")
+
 
 
 # 1a -> write the function file_line_len(fpath), which returns the number of lines in the file
@@ -17,15 +19,15 @@ import os
 
 # ANOTHER SOLUTION - better for bigger files:
 
-# def file_line_len(fpath):
-#     file_len = 0
-#     with open(fpath, encoding="utf-8") as fstream:
-#         for _ in fstream:
-#             file_len += 1
-#     return file_len
+def file_line_len(fpath):
+    file_len = 0
+    with open(fpath, encoding="utf-8") as fstream:
+        for _ in fstream:
+            file_len += 1
+    return file_len
 
 
-# print(file_line_len("Day12\sherlock_holmes_adventures.txt"))
+# print(file_line_len("sherlock_holmes_adventures.txt"))
 
 
 # 1b -> write the function get_text_lines(fpath), which returns a list with only those lines that contain text.
@@ -36,13 +38,13 @@ import os
 
 # SOLUTION:
 
-# def get_text_lines(fpath):
-#     with open(fpath, encoding="utf-8") as fstream:
-#         lines = [line.strip() for line in fstream if line.strip()]
-#     return lines
+def get_text_lines(fpath):
+    with open(fpath, encoding="utf-8") as fstream:
+        lines = [line.strip() for line in fstream if line.strip()]
+    return lines
 
 
-# text_lines = get_text_lines("Day12\sherlock_holmes_adventures.txt")
+text_lines = get_text_lines("sherlock_holmes_adventures.txt")
 # print(text_lines[:20])
 
 
@@ -50,18 +52,21 @@ import os
 
 # This function will store all lines into destpath file
 
-# FIXME
+# SOLUTION:
 
-with open("Day12\sherlock_holmes_adventures.txt", encoding="utf-8") as fin, open("destpath.txt", mode="w", encoding="utf-8") as file_out:
-    for line in fin:
-        if line.startswith("And"):
+def save_lines(destpath, lines, encoding="utf-8"):
+    with open(destpath, mode="w", encoding=encoding) as file_out:
+        for line in lines:
+            line += "\n"
             file_out.write(line)
 
 
-
-
-
 # 1d -> call save_lines with destpath being "pure_sherlock.txt" and lines being the text lines we cleaned from 1b
+
+# SOLUTION:
+
+save_lines("pure_sherlock.txt", text_lines)
+
 
 # 1e -> write the function clean_punkts(srcpath, destpath)
 
@@ -69,6 +74,21 @@ with open("Day12\sherlock_holmes_adventures.txt", encoding="utf-8") as fin, open
 
 # then function will save the cleaned text into destpath
 # clean_punkts("pure_sherlock.txt", "clean_sherlock.txt")
+
+# SOLUTION:
+
+import string
+
+def clean_punkts(srcpath, destpath, encoding="utf-8"):
+    with open(srcpath, encoding=encoding) as fin, open(destpath, mode="w", encoding=encoding) as file_out:
+        for line in fin:
+            for char in line:
+                if char in string.punctuation:
+                    line = line.replace(char, "")
+            file_out.write(line)
+
+
+clean_punkts("pure_sherlock.txt", "clean_sherlock.txt")
 
 
 # 1f -> write the function get_word_usage(srcpath, destpath)
@@ -87,3 +107,19 @@ with open("Day12\sherlock_holmes_adventures.txt", encoding="utf-8") as fin, open
 
 # in effect you will be saving in standard csv format - https://docs.python.org/3/library/csv.html
 # you can use csv module for this, but it is not necessary
+
+
+from collections import Counter
+import csv
+
+def get_word_usage(srcpath, destpath, encoding="utf-8"):
+    with open(srcpath, encoding=encoding) as fin, open(destpath, mode="w", encoding=encoding) as file_out:
+        words_list = csv.writer(file_out, delimiter=" ", quotechar="\n", quoting=csv.QUOTE_MINIMAL)
+        words = []
+        for line in fin:
+            words += line.split()
+        popular = Counter(words)
+        words_list.writerow(popular.most_common())
+        
+
+get_word_usage("clean_sherlock.txt", "word_usage_sherlock.csv")
