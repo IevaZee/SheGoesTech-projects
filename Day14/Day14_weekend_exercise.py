@@ -50,7 +50,7 @@ def get_histogram(dice_throw_list, file_name=""):
     plt.xlabel("Total number on the dices")
     plt.ylabel("Occurrence")
     plt.title("Histogram of dice throws")
-    if file_name != "":
+    if file_name:
         plt.savefig(file_name)  # TODO File name should have current date and time in it
     return plt.show()
 
