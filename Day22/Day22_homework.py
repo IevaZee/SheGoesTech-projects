@@ -1,0 +1,1 @@
+# Go through all the exercises in https://sqlbolt.com and see if you can solve them all
